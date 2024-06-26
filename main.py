@@ -83,7 +83,7 @@ def jogar(nome):
     larguaMissel  = 90
     alturaMissel  = 90
 
-    larguaMissel2  = 90
+    larguaMissel2  = 50
     alturaMissel2  = 90
     larguraAguia = 127
     alturaAguia = 50
