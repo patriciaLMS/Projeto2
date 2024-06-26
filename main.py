@@ -2,7 +2,7 @@ import pygame
 import random
 import os
 from tkinter import simpledialog
-from recursosFuncao.funcoes2 import movimentarAguia
+from funcoesUsadas.funcoes2 import sol,gerenciarTamanhoSol
 
 pygame.init()
 
@@ -11,13 +11,13 @@ icone  = pygame.image.load("Recursos/icone2.png")
 iron = pygame.image.load("Recursos/euclides2.png")
 
 fundo = pygame.image.load("Recursos/fundo2.png")
-fundoStart = pygame.image.load("Recursos/fundoStart2.1.png")
-fundoDead = pygame.image.load("Recursos/fundoDead2.2.png")
+fundoStart = pygame.image.load("Recursos/fundoStart4.png")
+fundoDead = pygame.image.load("Recursos/fundoDead3.png")
 
-missel = pygame.image.load("Recursos/indefinicao1.png")
-#missel2 = pygame.image.load("Recursos/missile.png")
+missel = pygame.image.load("Recursos/inimigo1.png")
+missel2 = pygame.image.load("Recursos/inimigo2.png")
 
-aguia = pygame.image.load("Recursos/aguia3.png")
+aguia = pygame.image.load("Recursos/aguia4.png")
 
 tamanho = (800,600)
 tela = pygame.display.set_mode( tamanho ) 
@@ -37,8 +37,22 @@ preto = (0, 0 ,0 )
 
 
 
+  
 
 
+def movimentarAguia(posicaoXAguia, direita):
+    if direita:
+        if posicaoXAguia < 800:  
+            posicaoXAguia += 5
+        else:
+            direita = False
+    else:
+        if posicaoXAguia > 0:
+            posicaoXAguia -= 10
+        else:
+            direita = True
+    
+    return posicaoXAguia, direita
 
 
 
@@ -53,12 +67,30 @@ def jogar(nome):
     posicaoXMissel = 400
     posicaoYMissel = -240
     velocidadeMissel = 1
+
+    posicaoXMissel2 = 300
+    posicaoYMissel2 = -210
+    velocidadeMissel2 = 1
+
+
+
+    posicaoXAguia = 400
+    posicaoYAguia = 300
+    direita = True
     pontos = 0
     larguraPersona = 210
     alturaPersona = 127
-    larguaMissel  = 127
-    alturaMissel  = 127
+    larguaMissel  = 90
+    alturaMissel  = 90
+
+    larguaMissel2  = 90
+    alturaMissel2  = 90
+    larguraAguia = 127
+    alturaAguia = 50
     dificuldade  = 50
+
+    tamanhoSol = 30
+    crescendo = True
 
     while True:
         
@@ -75,14 +107,7 @@ def jogar(nome):
                 movimentoXPersona = 0
             elif evento.type == pygame.KEYUP and evento.key == pygame.K_LEFT:
                 movimentoXPersona = 0
-            #elif evento.type == pygame.KEYDOWN and evento.key == pygame.K_UP:
-                movimentoYPersona = -10
-            #elif evento.type == pygame.KEYDOWN and evento.key == pygame.K_DOWN:
-                movimentoYPersona = 10
-            #elif evento.type == pygame.KEYUP and evento.key == pygame.K_UP:
-                movimentoYPersona = 0
-            #elif evento.type == pygame.KEYUP and evento.key == pygame.K_DOWN:
-                movimentoYPersona = 0
+            
                 
         posicaoXPersona = posicaoXPersona + movimentoXPersona            
         posicaoYPersona = posicaoYPersona + movimentoYPersona            
@@ -96,12 +121,21 @@ def jogar(nome):
             posicaoYPersona = 10
         elif posicaoYPersona > 473:
             posicaoYPersona = 472
+        posicaoXAguia, direita = movimentarAguia(posicaoXAguia, direita)
+        tamanhoSol, crescendo = gerenciarTamanhoSol(tamanhoSol, crescendo)
+        
         
             
         tela.fill(branco)
         tela.blit(fundo, (0,0) )
         #pygame.draw.circle(tela, preto, (posicaoXPersona,posicaoYPersona), 40, 0 )
         tela.blit( iron, (posicaoXPersona, posicaoYPersona) )
+        tela.blit(aguia, (posicaoXAguia, posicaoYAguia))
+        
+        sol(tela,700,50,int(tamanhoSol))
+        
+
+        
         
         posicaoYMissel = posicaoYMissel + velocidadeMissel
         if posicaoYMissel > 600:
@@ -111,8 +145,16 @@ def jogar(nome):
             posicaoXMissel = random.randint(0,800)
             pygame.mixer.Sound.play(missileSound)
             
+        posicaoYMissel2 = posicaoYMissel2 + velocidadeMissel2
+        if posicaoYMissel2 > 700:
+            posicaoYMissel2 = -240
+            pontos = pontos + 1
+            velocidadeMissel2 = velocidadeMissel2 + 1
+            posicaoXMissel2 = random.randint(0,800)
+            pygame.mixer.Sound.play(missileSound)
             
         tela.blit( missel, (posicaoXMissel, posicaoYMissel) )
+        tela.blit( missel2, (posicaoXMissel2, posicaoYMissel2) )
         
         texto = fonte.render(nome+"- Pontos: "+str(pontos), True, branco)
         tela.blit(texto, (10,10))
@@ -121,14 +163,18 @@ def jogar(nome):
         pixelsPersonaY = list(range(posicaoYPersona, posicaoYPersona+alturaPersona))
         pixelsMisselX = list(range(posicaoXMissel, posicaoXMissel + larguaMissel))
         pixelsMisselY = list(range(posicaoYMissel, posicaoYMissel + alturaMissel))
+
+        pixelsMisselX2 = list(range(posicaoXMissel2, posicaoXMissel2 + larguaMissel2))
+        pixelsMisselY2 = list(range(posicaoYMissel2, posicaoYMissel2 + alturaMissel2))
         
         #print( len( list( set(pixelsMisselX).intersection(set(pixelsPersonaX))   ) )   )
         if  len( list( set(pixelsMisselY).intersection(set(pixelsPersonaY))) ) > dificuldade:
             if len( list( set(pixelsMisselX).intersection(set(pixelsPersonaX))   ) )  > dificuldade:
                 dead(nome, pontos)
         
-    
-        
+        if  len( list( set(pixelsMisselY2).intersection(set(pixelsPersonaY))) ) > dificuldade:
+                if len( list( set(pixelsMisselX2).intersection(set(pixelsPersonaX))   ) )  > dificuldade:
+                    dead(nome, pontos)
         pygame.display.update()
         relogio.tick(60)
 
