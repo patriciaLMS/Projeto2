@@ -1,9 +1,9 @@
 # pip install cx_freeze
 import cx_Freeze
 executaveis = [ 
-               cx_Freeze.Executable(script="main.py", icon="Recursos/icone2.ico") ]
+               cx_Freeze.Executable(script="adaptGame.py", icon="Recursos/icone2.ico") ]
 cx_Freeze.setup(
-    name = "Iron Man", #mudar aqui
+    name = "Matemática e Euclides", 
     options={
         "build_exe":{
             "packages":["pygame"],
