@@ -2,50 +2,68 @@ import pygame
 import random
 import os
 from tkinter import simpledialog
+from recursosFuncao.funcoes2 import movimentarAguia
 
 pygame.init()
 
 relogio = pygame.time.Clock()
-icone  = pygame.image.load("assets/icone.png")
-iron = pygame.image.load("assets/iron.png")
-fundo = pygame.image.load("assets/fundo.png")
-fundoStart = pygame.image.load("assets/fundoStart.png")
-fundoDead = pygame.image.load("assets/fundoDead.png")
+icone  = pygame.image.load("Recursos/icone2.png")
+iron = pygame.image.load("Recursos/euclides2.png")
 
-missel = pygame.image.load("assets/missile.png")
+fundo = pygame.image.load("Recursos/fundo2.png")
+fundoStart = pygame.image.load("Recursos/fundoStart2.1.png")
+fundoDead = pygame.image.load("Recursos/fundoDead2.2.png")
+
+missel = pygame.image.load("Recursos/indefinicao1.png")
+#missel2 = pygame.image.load("Recursos/missile.png")
+
+aguia = pygame.image.load("Recursos/aguia3.png")
+
 tamanho = (800,600)
 tela = pygame.display.set_mode( tamanho ) 
-pygame.display.set_caption("Iron Man do Marcão")
+pygame.display.set_caption("Matemática e Euclides")
 pygame.display.set_icon(icone)
-missileSound = pygame.mixer.Sound("assets/missile.wav")
-explosaoSound = pygame.mixer.Sound("assets/explosao.wav")
+missileSound = pygame.mixer.Sound("Recursos/missile.wav")
+explosaoSound = pygame.mixer.Sound("Recursos/explosao.wav")
 fonte = pygame.font.SysFont("comicsans",28)
 fonteStart = pygame.font.SysFont("comicsans",55)
 fonteMorte = pygame.font.SysFont("arial",120)
-pygame.mixer.music.load("assets/ironsound.mp3")
+pygame.mixer.music.load("Recursos/matSound.mp3")
+
+
 
 branco = (255,255,255)
 preto = (0, 0 ,0 )
 
 
+
+
+
+
+
+
+
 def jogar(nome):
     pygame.mixer.Sound.play(missileSound)
     pygame.mixer.music.play(-1)
-    posicaoXPersona = 400
-    posicaoYPersona = 300
+    posicaoXPersona = 0
+    posicaoYPersona = 750
     movimentoXPersona  = 0
     movimentoYPersona  = 0
     posicaoXMissel = 400
     posicaoYMissel = -240
     velocidadeMissel = 1
     pontos = 0
-    larguraPersona = 250
+    larguraPersona = 210
     alturaPersona = 127
-    larguaMissel  = 50
-    alturaMissel  = 250
-    dificuldade  = 20
+    larguaMissel  = 127
+    alturaMissel  = 127
+    dificuldade  = 50
 
     while True:
+        
+        if jogar == True:
+          movimentarAguia(aguia)
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
                 quit()
@@ -57,13 +75,13 @@ def jogar(nome):
                 movimentoXPersona = 0
             elif evento.type == pygame.KEYUP and evento.key == pygame.K_LEFT:
                 movimentoXPersona = 0
-            elif evento.type == pygame.KEYDOWN and evento.key == pygame.K_UP:
+            #elif evento.type == pygame.KEYDOWN and evento.key == pygame.K_UP:
                 movimentoYPersona = -10
-            elif evento.type == pygame.KEYDOWN and evento.key == pygame.K_DOWN:
+            #elif evento.type == pygame.KEYDOWN and evento.key == pygame.K_DOWN:
                 movimentoYPersona = 10
-            elif evento.type == pygame.KEYUP and evento.key == pygame.K_UP:
+            #elif evento.type == pygame.KEYUP and evento.key == pygame.K_UP:
                 movimentoYPersona = 0
-            elif evento.type == pygame.KEYUP and evento.key == pygame.K_DOWN:
+            #elif evento.type == pygame.KEYUP and evento.key == pygame.K_DOWN:
                 movimentoYPersona = 0
                 
         posicaoXPersona = posicaoXPersona + movimentoXPersona            
@@ -71,13 +89,13 @@ def jogar(nome):
         
         if posicaoXPersona < 0 :
             posicaoXPersona = 10
-        elif posicaoXPersona >550:
-            posicaoXPersona = 540
+        elif posicaoXPersona >630:
+            posicaoXPersona = 620
             
         if posicaoYPersona < 0 :
             posicaoYPersona = 10
         elif posicaoYPersona > 473:
-            posicaoYPersona = 463
+            posicaoYPersona = 472
         
             
         tela.fill(branco)
@@ -194,7 +212,7 @@ def ranking():
 
 
 def start():
-    nome = simpledialog.askstring("Iron Man","Nome Completo:")
+    nome = simpledialog.askstring("Matemática e Euclides","Nome Completo:")
     
     
     
@@ -211,9 +229,9 @@ def start():
         tela.fill(branco)
         tela.blit(fundoStart, (0,0))
         buttonStart = pygame.draw.rect(tela, preto, (35,482,750,100),0)
-        buttonRanking = pygame.draw.rect(tela, preto, (35,50,200,50),0,30)
+        buttonRanking = pygame.draw.rect(tela, preto, (10,30,120,40),0,30)
         textoRanking = fonte.render("Ranking", True, branco)
-        tela.blit(textoRanking, (90,50))
+        tela.blit(textoRanking, (20,30))
         textoStart = fonteStart.render("START", True, branco)
         tela.blit(textoStart, (330,482))
 
