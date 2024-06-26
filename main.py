@@ -8,7 +8,7 @@ pygame.init()
 
 relogio = pygame.time.Clock()
 icone  = pygame.image.load("Recursos/icone4.png")
-iron = pygame.image.load("Recursos/euclides2.png") #########################
+euclides = pygame.image.load("Recursos/euclides2.png") #########################
 
 fundo = pygame.image.load("Recursos/fundo2.png")
 fundoStart = pygame.image.load("Recursos/fundoStart4.png")
@@ -83,7 +83,7 @@ def jogar(nome):
     larguaMissel  = 90
     alturaMissel  = 90
 
-    larguaMissel2  = 50
+    larguaMissel2  = 80
     alturaMissel2  = 90
     larguraAguia = 127
     alturaAguia = 50
@@ -129,7 +129,7 @@ def jogar(nome):
         tela.fill(branco)
         tela.blit(fundo, (0,0) )
         #pygame.draw.circle(tela, preto, (posicaoXPersona,posicaoYPersona), 40, 0 )
-        tela.blit( iron, (posicaoXPersona, posicaoYPersona) )  ###########################################
+        tela.blit( euclides, (posicaoXPersona, posicaoYPersona) )  ###########################################
         tela.blit(aguia, (posicaoXAguia, posicaoYAguia))
         
         sol(tela,700,50,int(tamanhoSol))
