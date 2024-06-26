@@ -61,7 +61,7 @@ def jogar(nome):
     pygame.mixer.Sound.play(missileSound)
     pygame.mixer.music.play(-1)
     posicaoXPersona = 0
-    posicaoYPersona = 800
+    posicaoYPersona = 750
     movimentoXPersona  = 0
     movimentoYPersona  = 0
     posicaoXMissel = 400
@@ -114,13 +114,13 @@ def jogar(nome):
         
         if posicaoXPersona < 0 :
             posicaoXPersona = 10
-        elif posicaoXPersona >630:
-            posicaoXPersona = 620
+        elif posicaoXPersona >750:
+            posicaoXPersona = 700
             
         if posicaoYPersona < 0 :
             posicaoYPersona = 10
-        elif posicaoYPersona > 473:
-            posicaoYPersona = 472
+        elif posicaoYPersona > 500:
+            posicaoYPersona = 490
         posicaoXAguia, direita = movimentarAguia(posicaoXAguia, direita)
         tamanhoSol, crescendo = gerenciarTamanhoSol(tamanhoSol, crescendo)
         
