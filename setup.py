@@ -1,7 +1,7 @@
 # pip install cx_freeze
 import cx_Freeze
 executaveis = [ 
-               cx_Freeze.Executable(script="adaptGame.py", icon="Recursos/icone2.ico") ]
+               cx_Freeze.Executable(script="adaptGame.py", icon="Recursos/icone4.ico") ]
 cx_Freeze.setup(
     name = "Matemática e Euclides", 
     options={
