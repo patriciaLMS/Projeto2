@@ -87,7 +87,7 @@ def jogar(nome):
     alturaMissel2  = 90
     larguraAguia = 127
     alturaAguia = 50
-    dificuldade  = 10
+    dificuldade  = 50
 
     tamanhoSol = 30
     crescendo = True
