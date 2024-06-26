@@ -68,8 +68,8 @@ def jogar(nome):
     posicaoYMissel = -240
     velocidadeMissel = 1
 
-    posicaoXMissel2 = 300
-    posicaoYMissel2 = -210
+    posicaoXMissel2 = 200
+    posicaoYMissel2 = -110
     velocidadeMissel2 = 1
 
 
