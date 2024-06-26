@@ -25,9 +25,9 @@ pygame.display.set_caption("Matemática e Euclides")
 pygame.display.set_icon(icone)
 missileSound = pygame.mixer.Sound("Recursos/gritoPassaro.mp3")
 explosaoSound = pygame.mixer.Sound("Recursos/vento.wav")
-fonte = pygame.font.SysFont("arimo",28)
-fonteStart = pygame.font.SysFont("arimo",70)
-fonteMorte = pygame.font.SysFont("arial",120)
+fonte = pygame.font.SysFont("comicsans",28)
+fonteStart = pygame.font.SysFont("comicsans",55)
+fonteMorte = pygame.font.SysFont("comicsans",120)
 pygame.mixer.music.load("Recursos/matSound.mp3")
 
 
@@ -61,7 +61,7 @@ def jogar(nome):
     pygame.mixer.Sound.play(missileSound)
     pygame.mixer.music.play(-1)
     posicaoXPersona = 0
-    posicaoYPersona = 750
+    posicaoYPersona = 800
     movimentoXPersona  = 0
     movimentoYPersona  = 0
     posicaoXMissel = 400
