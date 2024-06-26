@@ -4,7 +4,7 @@ Atividade Avaliativa proposta pelo Professor Me. Marcos Roberto dos Santos - 202
 
 -------SOBRE A ADAPTAÇÃO -----------------------------------------------------------------------------
 
-O game é uma adaptação do jogo "Iron Man Do Marcão". 
+##O game é uma adaptação do jogo "Iron Man Do Marcão".##
 O personagem principal é o matemático grego Euclides de Alexandria, o qual escreveu o livro
 "Elementos". Na antiga cidade egípicia Alexandria, pássaros estão atacando Euclides junto dos manuscritos matemáticos dele, ajude-o a desviar dos pássaros.
 
